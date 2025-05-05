@@ -5,6 +5,7 @@ import com.siemens.models.Customer;
 import com.siemens.models.ServicePoint;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.client.RestTemplate;
@@ -34,11 +35,13 @@ public class Main {
 
     //java object converted to bean
     @Bean
+    @Lazy
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
     }
 
     @Bean
+    @Lazy
     public static Customer getCustomer() {
         Faker faker = new Faker();
         return new Customer(faker.number().numberBetween(10000,10000000),faker.name().fullName());

@@ -1,5 +1,6 @@
 package com.siemens.models;
 
+import com.siemens.facades.DataSource;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,5 +23,7 @@ public class ServicePoint {
     public String getAllUsers(){
         return restTemplateObject.getForObject("https://jsonplaceholder.typicode.com/users", String.class);
     }
+
+
 
 }
