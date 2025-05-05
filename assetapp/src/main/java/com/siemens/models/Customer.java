@@ -8,13 +8,13 @@ import org.springframework.stereotype.Component;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Component
+@Component("customer-instance")
 public class Customer {
 
     private long id;
     private String name;
     private String address;
-    private long phone;
+    private String phone;
     private String email;
 
 
