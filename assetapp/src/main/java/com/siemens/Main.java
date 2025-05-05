@@ -14,11 +14,12 @@ public class Main {
         AbstractApplicationContext context = new
                 ClassPathXmlApplicationContext("asset-config.xml");
     //IOC
-    Customer customer = (Customer) context.getBean("customer");
+    //Customer customer = (Customer) context.getBean("customer");
+        Customer customer = getCustomer();
     Faker faker = new Faker();
     //DI
-     customer.setId(faker.number().numberBetween(10000,10000000));
-     customer.setName(faker.name().fullName());
+    // customer.setId(faker.number().numberBetween(10000,10000000));
+     //customer.setName(faker.name().fullName());
      customer.setAddress(faker.address().fullAddress());
      customer.setEmail(faker.internet().emailAddress());
      customer.setPhone(faker.phoneNumber().phoneNumber());
@@ -35,6 +36,12 @@ public class Main {
     @Bean
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
+    }
+
+    @Bean
+    public static Customer getCustomer() {
+        Faker faker = new Faker();
+        return new Customer(faker.number().numberBetween(10000,10000000),faker.name().fullName());
     }
 
 }
