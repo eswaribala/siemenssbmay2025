@@ -4,10 +4,14 @@ import com.siemens.customerservice.repositories.BaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
-public class GenericServiceImpl<T> implements GenericService<T> {
-    @Autowired
-    private BaseRepository<T,String> baseRepository;
+//@Service
+public abstract class GenericServiceImpl<T> implements GenericService<T> {
+    //@Autowired
+    private final BaseRepository<T,String> baseRepository;
+
+    public GenericServiceImpl(BaseRepository<T,String> baseRepository) {
+        this.baseRepository=baseRepository;
+    }
 
     @Override
     public T save(T entity) {
