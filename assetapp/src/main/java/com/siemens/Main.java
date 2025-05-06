@@ -15,7 +15,7 @@ public class Main {
         AbstractApplicationContext context = new
                 ClassPathXmlApplicationContext("asset-config.xml");
     //IOC
-    //Customer customer = (Customer) context.getBean("customer");
+       // Customer customer = (Customer) context.getBean("customer");
         Customer customer = getCustomer();
     Faker faker = new Faker();
     //DI
@@ -39,7 +39,6 @@ public class Main {
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
     }
-
     @Bean
     @Lazy
     public static Customer getCustomer() {

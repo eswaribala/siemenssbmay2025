@@ -11,5 +11,6 @@ public class Account {
 
     private long accountNo;
     private AccountType accountType;
+
     private Customer customer;
 }
