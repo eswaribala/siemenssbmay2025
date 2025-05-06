@@ -12,9 +12,12 @@ import com.siemens.customerservice.services.IndividualCustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class CustomerController {
@@ -90,5 +93,14 @@ public class CustomerController {
     }
 
 
+    //get individuals
+    @GetMapping("/indvidualcustomers/v1.0")
+    public Iterable<IndividualCustomer> getAllIndividuals(){
+        return this.individualCustomerService.findAll();
+    }
 
+    @GetMapping("/corporatecustomers/v1.0")
+    public Iterable<CorporateCustomer> getAllCorporates(){
+        return this.corporateCustomerService.findAll();
+    }
 }
