@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class FullName {
+public class FullNameDTO {
     private String firstName;
     private String lastName;
     private String middleName;

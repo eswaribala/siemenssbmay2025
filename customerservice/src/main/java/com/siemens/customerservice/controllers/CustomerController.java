@@ -28,12 +28,20 @@ public class CustomerController {
     @PostMapping("/indvidualcustomers/v1.0")
     public ResponseEntity<ResponseWrapper> addIndividual(@RequestBody Individual individual){
 
+
+        //DTO to Entity
         IndividualCustomer individualObj = IndividualCustomer.builder()
                 .customerId(individual.getCustomerId())
+                .fullName(FullName.builder()
+                        .firstName(individual.getFullName().getFirstName())
+                        .lastName(individual.getFullName().getLastName())
+                        .middleName(individual.getFullName().getMiddleName())
+                        .build())
                 .email(individual.getEmail())
                 .phoneNumber(individual.getPhoneNumber())
                 .active(individual.isActive())
                 .dateOfBirth(individual.getDateOfBirth())
+                .gender(individual.getGender())
                 .build();
 
          IndividualCustomer individualCustomerResponse= this.individualCustomerService.save(individualObj);
@@ -54,8 +62,14 @@ public class CustomerController {
 
         CorporateCustomer corporateObj = CorporateCustomer.builder()
                 .customerId(corporate.getCustomerId())
+                .fullName(FullName.builder()
+                        .firstName(corporate.getFullName().getFirstName())
+                        .lastName(corporate.getFullName().getLastName())
+                        .middleName(corporate.getFullName().getMiddleName())
+                        .build())
                 .email(corporate.getEmail())
                 .phoneNumber(corporate.getPhoneNumber())
+                .companyType(corporate.getCompanyType())
                 .active(corporate.isActive())
 
                 .build();

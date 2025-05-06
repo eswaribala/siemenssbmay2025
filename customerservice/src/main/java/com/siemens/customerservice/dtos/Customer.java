@@ -11,11 +11,10 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @SuperBuilder
 public class Customer {
-
     private String customerId;
 
 
-    private FullName fullName;
+    private FullNameDTO fullName;
 
 
     private String email;
