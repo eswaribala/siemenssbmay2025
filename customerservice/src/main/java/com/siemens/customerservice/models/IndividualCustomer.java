@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.springframework.format.annotation.DateTimeFormat;
-
 import java.time.LocalDate;
+
 @Entity
 @Table(name = "individual_customer")
 @SuperBuilder

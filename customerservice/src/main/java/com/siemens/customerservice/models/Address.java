@@ -1,9 +1,6 @@
 package com.siemens.customerservice.models;
-/*
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "address")
@@ -21,5 +18,8 @@ public class Address {
     private String country;
     @Column(name = "Postal_Code",nullable = false,length = 10)
     private String postalCode;
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(foreignKey = @ForeignKey(name = "Customer_Id"),name="Customer_Id_FK")
+    private Customer customer;
+
 }
-*/
