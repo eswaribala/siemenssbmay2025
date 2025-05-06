@@ -36,6 +36,7 @@ public class Customer {
 
     @Column(name = "Phone_Number",nullable = false,length = 15)
     private String phoneNumber;
-
+    @Column(name = "Active",nullable = false)
+    private boolean active;
 
 }
