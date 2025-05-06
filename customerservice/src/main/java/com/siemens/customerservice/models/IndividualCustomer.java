@@ -8,7 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 @Entity
 @Table(name = "individual_customer")
-@Builder
+@SuperBuilder
 @EqualsAndHashCode(callSuper = false)
 @Data
 @AllArgsConstructor

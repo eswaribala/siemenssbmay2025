@@ -5,7 +5,7 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 @Entity
 @Table(name = "corporate_customer")
-@Builder
+@SuperBuilder
 @EqualsAndHashCode(callSuper = false)
 @Data
 @AllArgsConstructor
