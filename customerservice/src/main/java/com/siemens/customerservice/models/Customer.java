@@ -1,17 +1,31 @@
 package com.siemens.customerservice.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "customer")
+@SuperBuilder
+@Inheritance(strategy = InheritanceType.JOINED)
+@EqualsAndHashCode(callSuper = false)
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "custom_id_generator")
+    @GenericGenerator(name = "custom_id_generator", strategy = "com.siemens.customerservice.models.CustomIdGenerator")
     @Column(name = "Customer_Id")
-    private long customerId;
+    private String customerId;
 
     @Embedded
     private FullName fullName;
@@ -22,10 +36,5 @@ public class Customer {
     @Column(name = "Phone_Number",nullable = false,length = 15)
     private String phoneNumber;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "Gender",nullable = false,length = 15)
-    private Gender gender;
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @Column(name = "Date_Of_Birth",nullable = false)
-    private LocalDate dateOfBirth;
+
 }
