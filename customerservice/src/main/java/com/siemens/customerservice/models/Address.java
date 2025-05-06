@@ -1,9 +1,15 @@
 package com.siemens.customerservice.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "address")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Address {
     @Id
     @Column(name = "Address_Id")
