@@ -12,7 +12,10 @@ import com.siemens.customerservice.services.IndividualCustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -26,7 +29,7 @@ public class CustomerController {
     //save individual
 
     @PostMapping("/indvidualcustomers/v1.0")
-    public ResponseEntity<ResponseWrapper> addIndividual(@RequestBody Individual individual) {
+    public ResponseEntity<ResponseWrapper> addIndividual(@RequestBody Individual individual){
 
 
         //DTO to Entity
@@ -44,20 +47,21 @@ public class CustomerController {
                 .gender(individual.getGender())
                 .build();
 
-        IndividualCustomer individualCustomerResponse = this.individualCustomerService.save(individualObj);
-        if (individualCustomerResponse != null) {
-            return ResponseEntity.status(HttpStatus.CREATED).body(new
-                    ResponseWrapper<IndividualCustomer>(individualCustomerResponse));
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new ResponseWrapper("Invalid Input"));
-        }
+         IndividualCustomer individualCustomerResponse= this.individualCustomerService.save(individualObj);
+         if(individualCustomerResponse!=null){
+             return ResponseEntity.status(HttpStatus.CREATED).body(new
+                     ResponseWrapper<IndividualCustomer>(individualCustomerResponse));
+         }else
+         {
+             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                     .body(new ResponseWrapper("Invalid Input"));
+         }
+
 
 
     }
-
     @PostMapping("/corporatecustomers/v1.0")
-    public ResponseEntity<ResponseWrapper> addCorporate(@RequestBody Corporate corporate) {
+    public ResponseEntity<ResponseWrapper> addCorporate(@RequestBody Corporate corporate){
 
         CorporateCustomer corporateObj = CorporateCustomer.builder()
                 .customerId(corporate.getCustomerId())
@@ -73,15 +77,17 @@ public class CustomerController {
 
                 .build();
 
-        CorporateCustomer corporateCustomerResponse =
+        CorporateCustomer corporateCustomerResponse=
                 this.corporateCustomerService.save(corporateObj);
-        if (corporateCustomerResponse != null) {
+        if(corporateCustomerResponse!=null){
             return ResponseEntity.status(HttpStatus.CREATED).body(new
                     ResponseWrapper<CorporateCustomer>(corporateCustomerResponse));
-        } else {
+        }else
+        {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new ResponseWrapper("Invalid Input"));
         }
+
 
 
     }
@@ -89,22 +95,12 @@ public class CustomerController {
 
     //get individuals
     @GetMapping("/indvidualcustomers/v1.0")
-    public Iterable<IndividualCustomer> getAllIndividuals() {
+    public Iterable<IndividualCustomer> getAllIndividuals(){
         return this.individualCustomerService.findAll();
     }
 
     @GetMapping("/corporatecustomers/v1.0")
-    public Iterable<CorporateCustomer> getAllCorporates() {
+    public Iterable<CorporateCustomer> getAllCorporates(){
         return this.corporateCustomerService.findAll();
     }
-
-    @GetMapping("/indvidualcustomers/v1.0/{customerId}")
-    public ResponseEntity<ResponseWrapper> getCustomerById(@PathVariable String customerId) {
-        IndividualCustomer individualCustomerResponse = this.individualCustomerService.findById(customerId);
-
-            return ResponseEntity.status(HttpStatus.CREATED).body(new
-                    ResponseWrapper<IndividualCustomer>(individualCustomerResponse));
-
-    }
-
 }

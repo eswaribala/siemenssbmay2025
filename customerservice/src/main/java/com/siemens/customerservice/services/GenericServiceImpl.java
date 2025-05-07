@@ -1,6 +1,5 @@
 package com.siemens.customerservice.services;
 
-import com.siemens.customerservice.exceptions.CustomerNotFoundException;
 import com.siemens.customerservice.repositories.BaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,8 +35,7 @@ public abstract class GenericServiceImpl<T> implements GenericService<T> {
 
     @Override
     public T findById(String id) {
-        return baseRepository.findById(id).orElseThrow(()->
-                new CustomerNotFoundException("Customer not found"));
+        return baseRepository.findById(id).orElse(null);
     }
 
     @Override
