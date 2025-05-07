@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Entity
@@ -13,7 +15,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class IndividualCustomer extends Customer{
+public class IndividualCustomer extends Customer implements Serializable {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "Gender",nullable = false,length = 15)

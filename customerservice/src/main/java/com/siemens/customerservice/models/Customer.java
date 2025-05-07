@@ -9,6 +9,7 @@ import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -20,7 +21,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer {
+public class Customer implements Serializable {
     @Id
    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     @GeneratedValue(generator = "custom_id_generator")

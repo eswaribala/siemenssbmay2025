@@ -23,13 +23,13 @@ public abstract class GenericServiceImpl<T> implements GenericService<T> {
     }
 
     @Override
-    @CachePut(cacheNames = "customers")
+    @CachePut(cacheNames = "customersv1")
     public T update(T entity) {
      return baseRepository.save(entity);
     }
 
     @Override
-    @CacheEvict(cacheNames = "customers")
+    @CacheEvict(cacheNames = "customersv1")
     public boolean delete(T entity) {
       boolean status=false;
       if(entity!=null){
@@ -47,7 +47,7 @@ public abstract class GenericServiceImpl<T> implements GenericService<T> {
     }
 
     @Override
-    @Cacheable(cacheNames = "customers")
+    @Cacheable(cacheNames = "customersv1")
     public Iterable<T> findAll() {
         return baseRepository.findAll();
     }
