@@ -12,6 +12,7 @@ import com.siemens.customerservice.services.IndividualCustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -95,11 +96,13 @@ public class CustomerController {
 
     //get individuals
     @GetMapping("/indvidualcustomers/v1.0")
+    @PreAuthorize("hasAuthority('SCOPE_Developer')")
     public Iterable<IndividualCustomer> getAllIndividuals(){
         return this.individualCustomerService.findAll();
     }
 
     @GetMapping("/corporatecustomers/v1.0")
+    @PreAuthorize("hasAuthority('SCOPE_TEST')")
     public Iterable<CorporateCustomer> getAllCorporates(){
         return this.corporateCustomerService.findAll();
     }
