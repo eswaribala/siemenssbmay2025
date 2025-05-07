@@ -1,0 +1,5 @@
+2025-05-07 16:35:22,218 [RMI TCP Connection(3)-192.168.0.101] INFO  DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-05-07 16:35:22,257 [RMI TCP Connection(3)-192.168.0.101] INFO  DispatcherServlet - Completed initialization in 3 ms
+2025-05-07 16:35:34,444 [http-nio-7074-exec-2] INFO  AbstractOpenApiResource - Init duration for springdoc-openapi is: 307 ms
+2025-05-07 16:35:56,314 [http-nio-7074-exec-3] INFO  CustomerController - Starting customer process
+2025-05-07 16:35:56,315 [http-nio-7074-exec-3] WARN  CustomerController - Warning: possible issue detected

@@ -9,14 +9,13 @@ import com.siemens.customerservice.models.IndividualCustomer;
 import com.siemens.customerservice.repositories.CorporateRepository;
 import com.siemens.customerservice.services.CorporateCustomerService;
 import com.siemens.customerservice.services.IndividualCustomerService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,6 +26,7 @@ public class CustomerController {
     @Autowired
     private CorporateCustomerService corporateCustomerService;
 
+    private static final Logger logger = LogManager.getLogger(CustomerController.class);
     //save individual
 
     @PostMapping("/indvidualcustomers/v1.0")
@@ -92,18 +92,31 @@ public class CustomerController {
 
 
     }
+    @GetMapping("/indvidualcustomers/v1.0/{customerId}")
+    public ResponseEntity<ResponseWrapper> getCustomerById(@PathVariable String customerId) {
+        IndividualCustomer individualCustomerResponse = this.individualCustomerService.findById(customerId);
 
+        return ResponseEntity.status(HttpStatus.CREATED).body(new
+                ResponseWrapper<IndividualCustomer>(individualCustomerResponse));
+
+    }
 
     //get individuals
     @GetMapping("/indvidualcustomers/v1.0")
     @PreAuthorize("hasAuthority('SCOPE_Developer')")
     public Iterable<IndividualCustomer> getAllIndividuals(){
+        logger.info("Starting customer process");
+        logger.debug("Debugging details here");
+        logger.warn("Warning: possible issue detected");
         return this.individualCustomerService.findAll();
     }
 
     @GetMapping("/corporatecustomers/v1.0")
     @PreAuthorize("hasAuthority('SCOPE_TEST')")
     public Iterable<CorporateCustomer> getAllCorporates(){
+        logger.info("Starting customer process");
+        logger.debug("Debugging details here");
+        logger.warn("Warning: possible issue detected");
         return this.corporateCustomerService.findAll();
     }
 }
